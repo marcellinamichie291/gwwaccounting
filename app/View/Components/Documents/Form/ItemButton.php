@@ -39,7 +39,7 @@ class ItemButton extends Component
      */
     public function render()
     {
-        $items = Item::enabled()->orderBy('name')->take(setting('default.select_limit'))->get();
+        $items = Item::enabled()->where('category_id', 7)->orderBy('name')->take(setting('default.select_limit'))->get();
         $price_type = $this->getPriceType($this->type, $this->isSale, $this->isPurchase);
 
         foreach ($items as $item) {

@@ -59,6 +59,7 @@ class Document extends Model
         'parent_id',
         'created_from',
         'created_by',
+        'item_id',
     ];
 
     /**

@@ -86,5 +86,17 @@
                 not-required
             />
         @endif
+
+        @if(isset($inventoryItems))
+            <div class="relative sm:col-span-2">
+                <label for="">Select Inventory</label>
+                <select name="item_id" id="" class="w-full text-sm px-3 py-2.5 mt-1 rounded-lg border border-light-gray text-black placeholder-light-gray bg-white disabled:bg-gray-200 focus:outline-none focus:ring-transparent focus:border-purple">
+                    <option value="">Select Item</option>
+                    @foreach($inventoryItems as $key => $value)
+                        <option value="{{$key}}">{{$value}}</option>
+                    @endforeach
+                </select>
+            </div>
+        @endif
     </div>
 </div>
