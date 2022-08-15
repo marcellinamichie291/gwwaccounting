@@ -46,13 +46,13 @@
                     @endif
 
                     @if (! $hideCompanyTaxNumber)
-                        
+
                         @if (setting('company.tax_number'))
                             <p>
                                 {{ trans('general.tax_number') }}: {{ setting('company.tax_number') }}
                             </p>
                         @endif
-                        
+
                     @endif
 
                     @if (! $hideCompanyPhone)
@@ -187,6 +187,18 @@
                         </p>
                     @endif
                 @stack('due_at_input_end')
+
+                @if ($type == 'invoice' || $type == 'bill')
+                    <p class="mb-0">
+                            <span class="font-semibold">
+                                Inventory:
+                            </span>
+
+                        <span class="float-right spacing">
+                            {{ optional($document->inventory)->name }}
+                        </span>
+                    </p>
+                @endif
             </div>
         </div>
     </div>

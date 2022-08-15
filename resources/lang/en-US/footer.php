@@ -3,8 +3,8 @@
 return [
 
     'version'               => 'Version',
-    'powered'               => 'Powered By Akaunting',
+    'powered'               => 'Powered By Galaxy Shipping',
     'link'                  => 'https://akaunting.com',
-    'software'              => 'Free Accounting Software',
+    'software'              => 'Accounting Software',
 
 ];

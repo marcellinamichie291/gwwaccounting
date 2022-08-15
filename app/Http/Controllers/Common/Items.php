@@ -25,7 +25,7 @@ class Items extends Controller
      */
     public function index()
     {
-        $items = Item::with('category', 'media', 'taxes')->collect();
+        $items = Item::with('category', 'media', 'taxes')->where('type', 'service')->collect();
 
         return $this->response('common.items.index', compact('items'));
     }

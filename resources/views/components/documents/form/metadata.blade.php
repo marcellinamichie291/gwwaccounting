@@ -87,16 +87,8 @@
             />
         @endif
 
-        @if(isset($inventoryItems))
-            <div class="relative sm:col-span-2">
-                <label for="">Select Inventory</label>
-                <select name="item_id" id="" class="w-full text-sm px-3 py-2.5 mt-1 rounded-lg border border-light-gray text-black placeholder-light-gray bg-white disabled:bg-gray-200 focus:outline-none focus:ring-transparent focus:border-purple">
-                    <option value="">Select Item</option>
-                    @foreach($inventoryItems as $key => $value)
-                        <option value="{{$key}}">{{$value}}</option>
-                    @endforeach
-                </select>
-            </div>
+        @if(isset($type) && ($type == 'invoice' || $type == 'bill'))
+            <x-form.group.inventory form-group-class="sm:col-span-2 el-select-tags-pl-38" :selected="$itemId" required />
         @endif
     </div>
 </div>

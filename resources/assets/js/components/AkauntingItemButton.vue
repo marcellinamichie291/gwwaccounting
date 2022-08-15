@@ -4,17 +4,17 @@
             <span class="material-icons-outlined text-base font-bold ltr:mr-1 rtl:ml-1">add</span>
              {{ addItemText }}
         </button>
- 
+
         <div :class="[{'is-open': show.item_list}]" tabindex="-1">
             <div class="-mt-10.5 left-0 right-0 bg-white border rounded-lg" v-if="show.item_list">
                <div class="relative">
                    <span class="material-icons-round absolute left-4 top-3 text-lg">search</span>
-                   <input 
+                   <input
                        type="text"
                        data-input="true"
                        class="w-full text-sm py-2.5 mt-1 border text-black placeholder-light-gray bg-white disabled:bg-gray-200 focus:outline-none focus:ring-transparent focus:border-purple px-10 border-t-0 border-l-0 border-r-0 border-gray-200 rounded-none"
-                       autocapitalize="default" 
-                       autocorrect="ON" 
+                       autocapitalize="default"
+                       autocorrect="ON"
                        :placeholder="placeholder"
                        v-model="search"
                        @input="onInput"
@@ -24,17 +24,17 @@
                </div>
 
                 <ul class="w-full text-sm rounded-lg border-light-gray text-black placeholder-light-gray bg-white disabled:bg-gray-200 focus:outline-none focus:ring-transparent focus:border-purple p-0 mt-0 border-0 cursor-pointer">
-                    <div 
-                        class="hover:bg-gray-100 px-4" 
-                        v-for="(item, index) in sortedItems" 
-                        :key="index" 
+                    <div
+                        class="hover:bg-gray-100 px-4"
+                        v-for="(item, index) in sortedItems"
+                        :key="index"
                         :class="isItemMatched ? 'highlightItem' : ''"
                         @click="onItemSelected(item)"
                     >
                         <div class="w-full flex items-center justify-between">
                             <span>{{ item.name }}</span>
 
-                            <money 
+                            <money
                                 :name="'item-id-' + item.id"
                                 :value="item.price"
                                 v-bind="money"
@@ -252,7 +252,7 @@ export default {
                         name: value,
                         description: '',
                         price: 0,
-                        tax_ids: [], 
+                        tax_ids: [],
                     });
 
                     index++;
@@ -290,7 +290,7 @@ export default {
                 return;
             }
 
-            //condition that checks if input is below the given character limit 
+            //condition that checks if input is below the given character limit
             if (this.search.length < this.searchCharLimit) {
                 this.setItemList(this.items); //once the user deletes the search input, we show the overall item list
                 this.sortItems(); // we order it as wanted
@@ -307,13 +307,13 @@ export default {
         },
 
         inputEnterEvent() {
-            this.isItemMatched 
+            this.isItemMatched
                 ? this.onItemSelected()
                 : this.onItemCreate()
         },
 
         async fetchMatchedItems() {
-            await window.axios.get(url + '/common/items?search="' + this.search + '" enabled:1 limit:10')
+            await window.axios.get(url + '/common/items?search="' + this.search + '" type:service enabled:1 limit:10')
                 .then(response => {
                     this.item_list = [];
                     let items = response.data.data;
@@ -336,7 +336,7 @@ export default {
         },
 
         onItemSelected(clickSelectedItem) {
-            let item; 
+            let item;
             const firstMatchedItem = this.item_list[0];
             const isClickSelectedItem = clickSelectedItem ? true : false;
             isClickSelectedItem ? item = clickSelectedItem  : item = firstMatchedItem;
@@ -373,7 +373,7 @@ export default {
                 price: 0,
                 tax_ids: [],
             };
-            
+
             this.newItems.push(item);
 
             this.addItem(item, 'newItem');
@@ -495,7 +495,7 @@ export default {
                 return 0;
             });
 
-            const sortedItemList = this.item_list.filter(item => 
+            const sortedItemList = this.item_list.filter(item =>
                 item.value.toLowerCase().includes(this.search.toLowerCase())
             );
 
@@ -542,6 +542,6 @@ export default {
 
 <style scoped>
     .highlightItem:first-child {
-        background-color: #F5F7FA;    
+        background-color: #F5F7FA;
     }
 </style>

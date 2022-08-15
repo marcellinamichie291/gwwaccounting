@@ -112,6 +112,11 @@ class Document extends Model
         return $this->belongsTo('App\Models\Setting\Currency', 'currency_code', 'code');
     }
 
+    public function inventory()
+    {
+        return $this->belongsTo('App\Models\Common\Item', 'item_id');
+    }
+
     public function items()
     {
         return $this->hasMany('App\Models\Document\DocumentItem', 'document_id');

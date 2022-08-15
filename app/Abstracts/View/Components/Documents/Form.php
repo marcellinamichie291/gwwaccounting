@@ -258,6 +258,9 @@ abstract class Form extends Component
 
     /** @var bool */
     public $hideSendTo;
+
+    /** @var int */
+    public $itemId;
     /* -- Buttons End -- */
 
     /**
@@ -398,6 +401,7 @@ abstract class Form extends Component
         $this->classCategory = !empty($classCategory) ? $classCategory : 'sm:col-span-4 grid gap-x-8 gap-y-3';
         $this->typeCategory = $this->getTypeCategory($type, $typeCategory);
         $this->categoryId = $this->getCategoryId($type, $categoryId);
+        $this->itemId = $this->getItemId();
 
         $this->hideAttachment = $hideAttachment;
         $this->classAttachment = !empty($classAttachment) ? $classAttachment : 'sm:col-span-4';
@@ -1223,5 +1227,14 @@ abstract class Form extends Component
         }
 
         return setting('default.' . $this->typeCategory . '_category');
+    }
+
+    protected function getItemId()
+    {
+        if (! empty($this->document) && ! empty($this->document->item_id)) {
+            return $this->document->item_id;
+        }
+
+        return 0;
     }
 }

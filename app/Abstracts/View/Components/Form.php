@@ -151,6 +151,7 @@ abstract class Form extends Component
         $this->setDynamicAttributes($dynamicAttributes);
 
         $this->hideCurrency = $hideCurrency;
+
     }
 
     protected function getType($type)
