@@ -88,7 +88,7 @@
         @endif
 
         @if(isset($type) && ($type == 'invoice' || $type == 'bill'))
-            <x-form.group.inventory form-group-class="sm:col-span-2 el-select-tags-pl-38" :selected="$itemId" required />
+            <x-form.group.inventory form-group-class="sm:col-span-2 el-select-tags-pl-38" :options="$inventoryItems" :selected="$itemId" required />
         @endif
     </div>
 </div>

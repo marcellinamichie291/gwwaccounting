@@ -13,6 +13,7 @@ use App\Jobs\Common\UpdateItem;
 use App\Models\Common\Item;
 use App\Models\Setting\Tax;
 use App\Traits\Uploads;
+use Illuminate\Support\Arr;
 
 class Items extends Controller
 {
@@ -25,7 +26,13 @@ class Items extends Controller
      */
     public function index()
     {
-        $items = Item::with('category', 'media', 'taxes')->where('type', 'service')->collect();
+        $items = Item::with('category', 'media', 'taxes');
+        if( Arr::get(request()->all(), 'type') === 'service' ) {
+            $items->where('type', 'service');
+        } elseif ( Arr::get(request()->all(), 'currency_code') ) {
+            $items->where('type', 'product');
+        }
+        $items = $items->collect();
 
         return $this->response('common.items.index', compact('items'));
     }

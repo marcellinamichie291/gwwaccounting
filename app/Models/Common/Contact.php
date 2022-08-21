@@ -57,6 +57,7 @@ class Contact extends Model
         'enabled',
         'created_from',
         'created_by',
+        'ref_id',
     ];
 
     /**

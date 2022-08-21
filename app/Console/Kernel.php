@@ -22,6 +22,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('migrate:customer')->everyFiveMinutes();
+        $schedule->command('migrate:vehicle')->everyFiveMinutes();
+
         // Not installed yet
         if (!config('app.installed')) {
             return;
@@ -31,7 +34,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('reminder:invoice')->dailyAt($schedule_time);
         $schedule->command('reminder:bill')->dailyAt($schedule_time);
-        $schedule->command('recurring:check')->dailyAt($schedule_time)->runInBackground();
+//        $schedule->command('recurring:check')->dailyAt($schedule_time)->runInBackground();
         $schedule->command('storage-temp:clear')->dailyAt('17:00');
     }
 

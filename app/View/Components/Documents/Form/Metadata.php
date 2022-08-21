@@ -14,7 +14,11 @@ class Metadata extends Component
      */
     public function render()
     {
-        $inventoryItems = Item::enabled()->where('category_id', 6)->orderBy('name')->pluck('name', 'id');
+        $inventoryItems = Item::enabled()->where('type', 'product')->orderBy('name')->orderBy('id', 'desc');
+        if( optional($this->document)->item_id ) {
+            $inventoryItems->where('id', optional($this->document)->item_id);
+        }
+        $inventoryItems = $inventoryItems->limit(10)->pluck('name', 'id')->toArray();
 
         return view('components.documents.form.metadata', compact('inventoryItems'));
     }

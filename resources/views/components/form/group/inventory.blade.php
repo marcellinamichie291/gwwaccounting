@@ -1,7 +1,9 @@
 <x-form.group.select
     name="item_id"
+    remote
+    :remote_action="$remoteAction"
     label="Inventory"
-    :options="$inventoryItems"
+    :options="$options"
     required="{{ $required }}"
     not-required="{{ $notRequired }}"
     model="form.item_id"

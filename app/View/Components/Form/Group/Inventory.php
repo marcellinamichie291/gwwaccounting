@@ -15,8 +15,8 @@ class Inventory extends Form
      */
     public function render()
     {
-        $inventoryItems = Item::enabled()->where('type', 'product')->orderBy('name')->pluck('name', 'id')->toArray();
+        $remoteAction = route('items.index');
 
-        return view('components.form.group.inventory', compact('inventoryItems'));
+        return view('components.form.group.inventory', compact('remoteAction'));
     }
 }
