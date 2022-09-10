@@ -11,5 +11,9 @@ class Inventory extends Model
 
     protected $table = 'items';
 
-    protected $fillable = [ 'ref_id', 'company_id', 'name', 'description', 'sale_price', 'purchase_price', 'category_id', ];
+    protected $fillable = [ 'ref_id', 'company_id', 'name', 'description', 'sale_price', 'purchase_price', 'category_id', 'misc' ];
+
+    protected $casts = [
+        'misc' => 'array',
+    ];
 }
