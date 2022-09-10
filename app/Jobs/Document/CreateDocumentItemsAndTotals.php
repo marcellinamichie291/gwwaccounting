@@ -195,6 +195,7 @@ class CreateDocumentItemsAndTotals extends Job implements HasOwner, HasSource, S
                     'purchase_price' => $item['price'],
                     'created_from' => $item['created_from'],
                     'created_by' => $item['created_by'],
+                    'aed_rate' => $item['aed_rate'],
                     'enabled' => '1',
                 ];
 

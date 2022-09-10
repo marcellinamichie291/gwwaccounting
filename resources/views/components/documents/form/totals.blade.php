@@ -216,6 +216,42 @@
 
                     @stack('grand_total_td_end')
 
+                    @stack('aed_total_td_start')
+
+                    <tr id="tr-subtotal">
+                        <td class="border-b-0 py-0"></td>
+
+                        <td class="font-medium text-right border-r-0 border-b-0 align-middle pb-0 pr-0">
+                            AED Total
+                        </td>
+
+                        @php
+                            $aedCurrency = \App\Models\Setting\Currency::where('code', 'AED')->first();
+                            if( empty($aedCurrency) ) {
+                                $aedCurrency = $currency;
+                            }
+                        @endphp
+                        <td class="text-right border-b-0 long-texts py-0">
+                            <div>
+                                <x-form.input.money
+                                    name="aed_total"
+                                    value="0"
+                                    disabled
+                                    row-input
+                                    v-model="totals.aed_total"
+                                    :currency="$aedCurrency"
+                                    dynamicCurrency="currency"
+                                    money-class="text-right disabled-money px-0"
+                                    form-group-class="text-right disabled-money"
+                                />
+                            </div>
+                        </td>
+
+                        <td class="border-b-0 pb-0" style="width: 40px"></td>
+                    </tr>
+
+                    @stack('aed_total_td_end')
+
                     @stack('currency_conversion_td_start')
 
                     <tr id="tr-currency-conversion" :class="[

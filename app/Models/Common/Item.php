@@ -28,7 +28,7 @@ class Item extends Model
      *
      * @var array
      */
-    protected $fillable = ['company_id', 'type', 'name', 'description', 'sale_price', 'purchase_price', 'category_id', 'enabled', 'created_from', 'created_by', 'ref_id'];
+    protected $fillable = ['company_id', 'type', 'name', 'description', 'sale_price', 'purchase_price', 'category_id', 'enabled', 'created_from', 'created_by', 'ref_id', 'misc'];
 
     /**
      * The attributes that should be cast.
@@ -39,6 +39,7 @@ class Item extends Model
         'sale_price' => 'double',
         'purchase_price' => 'double',
         'enabled' => 'boolean',
+        'misc' => 'array',
     ];
 
     /**

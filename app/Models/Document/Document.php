@@ -395,6 +395,18 @@ class Document extends Model
     }
 
     /**
+     * Get the not paid amount.
+     *
+     * @return string
+     */
+    public function getAedAmountDueAttribute()
+    {
+        $aedRate = optional($this->items()->first())->value('aed_rate') ?? 0;
+
+        return round(($this->amount - $this->paid) * $aedRate, 2) ;
+    }
+
+    /**
      * Get the status label.
      *
      * @return string
